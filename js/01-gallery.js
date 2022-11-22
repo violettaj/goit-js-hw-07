@@ -30,4 +30,8 @@ gallery.addEventListener("click", (event) => {
   instance.show();
 });
 
+document.addEventListener("keydown", (event)=> {
+    if (event.key === "Escape" && instance.visible()) instance.close();
+})
+
 console.log(galleryItems);
