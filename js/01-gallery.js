@@ -12,7 +12,24 @@ const instance = basicLightbox.create(
   }
 );
 
-const gallery = document.querySelector("div.gallery");
+const gallery = document.querySelector(".gallery");
+
+galleryItems.forEach((element) => {
+  const items = document.createElement("div");
+  items.classList.add("gallery__item");
+  gallery.append(items);
+  const links = document.createElement("a");
+  links.classList.add("gallery__link");
+  links.href = element.original;
+  items.append(links);
+  const images = document.createElement("img");
+  images.classList.add("gallery__image");
+  images.src = element.preview;
+  images.alt = element.description;
+  images.dataset.source = element.original;
+  links.append(images);
+});
+
 gallery.addEventListener("click", (event) => {
   event.preventDefault();
   const clickedElement = event.target;
@@ -30,8 +47,8 @@ gallery.addEventListener("click", (event) => {
   instance.show();
 });
 
-document.addEventListener("keydown", (event)=> {
-    if (event.key === "Escape" && instance.visible()) instance.close();
-})
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && instance.visible()) instance.close();
+});
 
 console.log(galleryItems);
